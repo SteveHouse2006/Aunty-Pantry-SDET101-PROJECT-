@@ -12,8 +12,12 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///auntypantry.db')  # Changed database name
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///auntypantry.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# FIX FOR PSYCOPG3: Convert postgres:// to postgresql+psycopg://
+if app.config['SQLALCHEMY_DATABASE_URI'] and app.config['SQLALCHEMY_DATABASE_URI'].startswith('postgres://'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace('postgres://', 'postgresql+psycopg://', 1)
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

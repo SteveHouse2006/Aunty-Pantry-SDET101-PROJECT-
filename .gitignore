@@ -180,3 +180,9 @@ docs/_build/
 # ===== LOCAL DEVELOPMENT =====
 # Local history for Visual Studio Code
 .history/.gitignore.example
+
+# Debug and test files (removed for production)
+check_versions.py
+test-db.py
+.gitignore.example
+test-*.py

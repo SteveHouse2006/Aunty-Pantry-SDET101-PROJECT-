@@ -179,4 +179,4 @@ docs/_build/
 
 # ===== LOCAL DEVELOPMENT =====
 # Local history for Visual Studio Code
-.history/
+.history/.gitignore.example

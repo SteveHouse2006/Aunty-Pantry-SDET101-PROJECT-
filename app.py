@@ -41,6 +41,18 @@ class Ingredient(db.Model):
     date_added = db.Column(db.DateTime, default=db.func.current_timestamp())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+with app.app_context():
+    try:
+        print("🔄 Checking/Creating database tables...")
+        db.create_all()
+        print("✅ Database tables created successfully!")
+        
+        # Optional: Test the connection
+        result = db.session.execute(text('SELECT 1'))
+        print(f"✅ Database connection test passed: {result.fetchone()}")
+    except Exception as e:
+        print(f"❌ Database initialization failed: {e}")
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))

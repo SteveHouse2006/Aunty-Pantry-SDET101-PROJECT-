@@ -1,0 +1,182 @@
+# ================================
+# AUNTY PANTRY - .gitignore
+# ================================
+
+# ===== PYTHON =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ===== VIRTUAL ENVIRONMENT =====
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# ===== ENVIRONMENT VARIABLES =====
+.env
+.env.local
+.env*.local
+.env.production
+.env.development
+secrets.ini
+config.ini
+
+# ===== DATABASE =====
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+db.sqlite3
+instance/
+
+# ===== AWS / DEPLOYMENT =====
+.elasticbeanstalk/
+.aws/
+eb-*.log
+.ebextensions/
+!.ebextensions/*.config  # Keep config files, ignore folders
+!.ebextensions/*.yml
+!.ebextensions/*.yaml
+
+# ===== IDE & EDITORS =====
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ===== OPERATING SYSTEM =====
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+__MACOSX/
+
+# Linux
+*~
+
+# ===== LOGS =====
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ===== TESTING =====
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ===== JUPYTER NOTEBOOK =====
+.ipynb_checkpoints
+
+# ===== PYTHON PACKAGING =====
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# ===== CELERY =====
+celerybeat-schedule
+celerybeat.pid
+
+# ===== SAGE MATH =====
+.sage/
+
+# ===== MISCELLANEOUS =====
+# Project-specific ignores
+instance/
+.webassets-cache
+.scrapy
+
+# ===== SECURITY =====
+# Never commit these!
+secrets.json
+credentials.json
+service-account-key.json
+*.pem
+*.key
+*.crt
+*.csr
+.pgp
+.gpg
+*.gpg
+
+# ===== DEPLOYMENT ARTIFACTS =====
+.cache
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pickle
+
+# ===== DOCUMENTATION =====
+docs/_build/
+.sass-cache
+
+# ===== LOCAL DEVELOPMENT =====
+# Local history for Visual Studio Code
+.history/

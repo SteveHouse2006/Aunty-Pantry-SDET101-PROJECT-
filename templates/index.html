@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">🥫 Welcome to Aunty Pantry</h1>
+    <p class="lead">Find recipes for your leftover ingredients!</p>
+    <p class="text-muted">Stop food waste with smart recipe suggestions</p>
+    
+    {% if current_user.is_authenticated %}
+        <div class="mt-5">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">
+                Go to Your Pantry
+            </a>
+        </div>
+    {% else %}
+        <div class="mt-5">
+            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">Register</a>
+        </div>
+    {% endif %}
+    
+    <!-- Feature highlights -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🥦</h3>
+                    <h5>Track Ingredients</h5>
+                    <p>Add what's in your fridge and pantry</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🔍</h3>
+                    <h5>Find Recipes</h5>
+                    <p>Get personalized recipe suggestions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🌎</h3>
+                    <h5>Reduce Waste</h5>
+                    <p>Use up ingredients before they go bad</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

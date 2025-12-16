@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Left Column: Ingredient Management -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>🥫 Your Pantry</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Add Ingredient Form -->
+                    <div class="mb-4">
+                        <h5>Add New Ingredient</h5>
+                        <form id="addIngredientForm">
+                            <div class="input-group mb-3">
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="ingredientInput" 
+                                       placeholder="e.g., chicken, onions, rice" 
+                                       required>
+                                <button class="btn btn-primary" type="submit">
+                                    Add to Pantry
+                                </button>
+                            </div>
+                            <small class="text-muted">
+                                Tip: Add one ingredient at a time for best recipe matches.
+                            </small>
+                        </form>
+                    </div>
+                    
+                    <!-- Ingredients List -->
+                    <div>
+                        <h5>Your Ingredients (<span id="dynamicCount">{{ ingredients|length }}</span>)</h5>
+                        <div class="list-group" id="ingredientsList">
+                            {% if ingredients %}
+                                {% for ingredient in ingredients %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center"
+                                     data-id="{{ ingredient.id }}">
+                                    <span>{{ ingredient.ingredient_name }}</span>
+                                    <button class="btn btn-sm btn-outline-danger delete-ingredient"
+                                            data-id="{{ ingredient.id }}">
+                                        Remove
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="alert alert-info">
+                                    Your pantry is empty! Add some ingredients to find recipes.
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- ← THIS CLOSING DIV WAS MISSING! -->
+        
+        <!-- Right Column: Recipe Search -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>🔍 Find Recipes</h5>
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">
+                        Find recipes using your pantry ingredients.
+                    </p>
+                    <button id="findRecipesBtn" 
+                            class="btn btn-success btn-lg"
+                            {% if not ingredients %}disabled{% endif %}>
+                        Find Recipes
+                        <span class="badge bg-light text-dark ms-2" id="ingredientCount">
+                            {{ ingredients|length }}
+                        </span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Recipe Results (Initially Hidden) -->
+            <div class="card" id="recipeResultsCard" style="display: none;">
+                <div class="card-header">
+                    <h5>🍳 Recipe Suggestions</h5>
+                </div>
+                <div class="card-body">
+                    <div id="recipeResults">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                    <div id="recipeLoading" style="display: none;">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Finding delicious recipes...</p>
+                        </div>
+                    </div>
+                    <div id="recipeError" style="display: none;" class="alert alert-danger">
+                        <!-- Error messages go here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recipe Modal Template -->
+<div class="modal fade" id="recipeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recipeModalTitle">Recipe Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="recipeModalBody">
+                <!-- Recipe details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveRecipeBtn">Save Recipe</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
